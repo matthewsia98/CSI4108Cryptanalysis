@@ -20,6 +20,7 @@ def htoi(h: str) -> int:
 
 
 def btoh(b: str) -> str:
+    b = b.replace(" ", "", -1)
     return format(int(b, 2), "x")
 
 
@@ -32,8 +33,10 @@ def random_bin(n: int) -> str:
 
 
 def format_bin(b: str) -> str:
+    b = b.replace(" ", "", -1)
     return " ".join(textwrap.wrap(b, 4))
 
 
 def split_bin(b: str) -> list[str]:
+    b = b.replace(" ", "", -1)
     return textwrap.wrap(b, 4)
