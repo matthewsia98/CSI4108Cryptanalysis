@@ -1,4 +1,3 @@
-import analysis
 import utils
 import json
 import numpy as np
@@ -9,18 +8,20 @@ with open(f"{victim}.json", "r") as f:
     data = json.load(f)
 
 sbox = np.array(data.get("sbox"))
-analysis.analyze(sbox)
 
+# NOTE: must change if changing sbox or permutation
 target_du = utils.btoi("0000 0110 0000 0110")
 du_counts = np.zeros(256, dtype=int)
 for c1, c2 in data.get("ciphertext_pairs"):
     dc = c1 ^ c2
     dc_bits = utils.itob(dc).zfill(16)
+    # NOTE: might need to change depending on permutation
     if dc_bits[0:4] != "0000" or dc_bits[8:12] != "0000":
         continue
 
     for sk in range(256):
         sk1, sk2 = utils.split_bin(utils.itob(sk).zfill(8))
+        # NOTE: might need to change depending on permutation
         k = utils.btoi(f"0000 {sk1} 0000 {sk2}")
 
         v1 = c1 ^ k
@@ -61,8 +62,11 @@ max_idxs = np.argpartition(du_counts, -topn)[-topn:]
 max_idxs = max_idxs[np.argsort(-du_counts[max_idxs])]
 for idx in max_idxs:
     sk1, sk2 = utils.split_bin(utils.itob(idx).zfill(8))
+    # NOTE: might need to change depending on permutation
     sk_bits = f"xxxx {sk1} xxxx {sk2}"
-    print(f"k = {sk_bits}, p = {du_counts[idx] / 5000}")
+    print(
+        f"k = {sk_bits}, {f"{du_counts[idx]}/5000".rjust(9)} ({du_counts[idx] / 5000})"
+    )
 
 
 print("==========")
@@ -70,3 +74,14 @@ print("Actual Key")
 print("==========")
 k = data.get("round_keys", [])[-1]
 print(f"k = {utils.format_bin(utils.itob(k).zfill(16))}")
+
+
+print("================")
+print("du Probabilities")
+print("================")
+du_probs = du_counts / 5000
+for sk in range(len(du_probs)):
+    sk1, sk2 = utils.split_bin(utils.itob(idx).zfill(8))
+    # NOTE: might need to change depending on permutation
+    sk_bits = f"xxxx {sk1} xxxx {sk2}"
+    print(f"k = {sk_bits}, p = {du_probs[sk]}")
