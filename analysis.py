@@ -2,6 +2,12 @@ import cipher
 import numpy as np
 
 
+print("=====")
+print("S-Box")
+print("=====")
+print(cipher.sbox)
+
+
 # Building difference distribution table
 diff_table = np.zeros((16, 16), dtype=int)
 for x1 in range(16):
