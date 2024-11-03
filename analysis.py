@@ -30,9 +30,11 @@ _max_idxs = _max_idxs[np.argsort(-flat_diff_table[_max_idxs])]
 max_idxs = np.unravel_index(_max_idxs, diff_table.shape)
 
 diff_pairs = np.column_stack(max_idxs)
-diff_probs = diff_table[max_idxs] / 16
+diff_counts = diff_table[max_idxs]
 print("=======================")
 print(f"Top {topn} difference pairs")
 print("=======================")
-for idx, prob in zip(diff_pairs, diff_probs):
-    print(f"∆X = {idx[0]:2d} ({idx[0]:X}) ⟶ ∆Y = {idx[1]:2d} ({idx[1]:X}), p = {prob}")
+for idx, count in zip(diff_pairs, diff_counts):
+    print(
+        f"∆X = {idx[0]:2d} ({idx[0]:X}) ⟶ ∆Y = {idx[1]:2d} ({idx[1]:X}), p = {count}/16 ({count/16})"
+    )
