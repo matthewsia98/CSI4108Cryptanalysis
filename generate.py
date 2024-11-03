@@ -10,7 +10,7 @@ random.seed(name)
 
 round_keys = [random.getrandbits(16) for _ in range(5)]
 # NOTE: must change if changing sbox or permutation
-dp = utils.btoi("0000 1011 0000 0000")
+dp = utils.btoi("0000 0000 1101 0000")
 ciphertext_pairs = []
 for x1 in range(5000):
     x2 = x1 ^ dp
