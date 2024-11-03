@@ -3,14 +3,14 @@ import json
 import numpy as np
 
 
-victim = input("Enter victim name: ").strip()
+victim = input("Enter victim's name: ").strip()
 with open(f"{victim}.json", "r") as f:
     data = json.load(f)
 
 sbox = np.array(data.get("sbox"))
 
 # NOTE: must change if changing sbox or permutation
-target_du = utils.btoi("0000 0000 0010 0010")
+target_du = utils.btoi("0000 0000 0011 0011")
 du_counts = np.zeros(256, dtype=int)
 for c1, c2 in data.get("ciphertext_pairs"):
     dc = c1 ^ c2
@@ -54,6 +54,16 @@ for c1, c2 in data.get("ciphertext_pairs"):
             du_counts[sk] += 1
 
 
+print("================")
+print("∆U Probabilities")
+print("================")
+for sk in np.argsort(-du_counts):
+    sk1, sk2 = utils.split_bin(utils.itob(sk).zfill(8))
+    # NOTE: might need to change depending on permutation
+    sk_bits = f"xxxx xxxx {sk1} {sk2}"
+    print(f"k = {sk_bits}, p = {du_counts[sk]}/5000 ({du_counts[sk] / 5000})")
+
+
 topn = 10
 print("=====================")
 print(f"Top {topn} key candidates")
@@ -74,14 +84,3 @@ print("Actual Key")
 print("==========")
 k = data.get("round_keys", [])[-1]
 print(f"k = {utils.format_bin(utils.itob(k).zfill(16))}")
-
-
-print("================")
-print("du Probabilities")
-print("================")
-du_probs = du_counts / 5000
-for sk in range(len(du_probs)):
-    sk1, sk2 = utils.split_bin(utils.itob(idx).zfill(8))
-    # NOTE: might need to change depending on permutation
-    sk_bits = f"xxxx xxxx {sk1} {sk2}"
-    print(f"k = {sk_bits}, p = {du_probs[sk]}")
