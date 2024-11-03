@@ -1,9 +1,11 @@
 import utils
+import random
 import numpy as np
 
 
-sbox = np.array([14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7])
-permutation = np.array([0, 4, 8, 12, 1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15])
+random.seed(0)
+sbox = np.array(random.sample(range(15), 15))
+permutation = np.array(random.sample(range(15), 15))
 
 
 def encrypt(p: int, round_keys: list[int]) -> int:
