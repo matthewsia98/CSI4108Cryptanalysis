@@ -75,7 +75,7 @@ for idx in max_idxs:
     # NOTE: might need to change depending on permutation
     sk_bits = f"xxxx xxxx {sk1} {sk2}"
     print(
-        f"k = {sk_bits}, {f"{du_counts[idx]}/5000".rjust(9)} ({du_counts[idx] / 5000})"
+        f"k = {sk_bits}, p = {f"{du_counts[idx]}/5000".rjust(9)} ({du_counts[idx] / 5000})"
     )
 
 
@@ -84,3 +84,6 @@ print("Actual Key")
 print("==========")
 k = data.get("round_keys", [])[-1]
 print(f"k = {utils.format_bin(utils.itob(k).zfill(16))}")
+
+
+print()

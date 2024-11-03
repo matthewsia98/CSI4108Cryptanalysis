@@ -19,7 +19,8 @@ for x1 in range(5000):
     c2 = cipher.encrypt(x2, round_keys)
     ciphertext_pairs.append((c1, c2))
 
-with open(f"{name}.json", "w") as f:
+filename = f"{name}.json"
+with open(filename, "w") as f:
     json.dump(
         {
             "sbox": cipher.sbox.tolist(),
@@ -30,3 +31,7 @@ with open(f"{name}.json", "w") as f:
         f,
         indent=4,
     )
+print(f"Results written to {filename}")
+
+
+print()
