@@ -12,7 +12,7 @@ def btoi(b: str) -> int:
 
 
 def itoh(i: int) -> str:
-    return format(i, "x")
+    return format(i, "X")
 
 
 def htoi(h: str) -> int:
@@ -21,7 +21,7 @@ def htoi(h: str) -> int:
 
 def btoh(b: str) -> str:
     b = b.replace(" ", "", -1)
-    return format(int(b, 2), "x")
+    return format(int(b, 2), "X")
 
 
 def htob(h: str) -> str:
