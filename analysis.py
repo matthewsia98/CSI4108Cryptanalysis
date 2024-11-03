@@ -35,4 +35,4 @@ print("=======================")
 print(f"Top {topn} difference pairs")
 print("=======================")
 for idx, prob in zip(diff_pairs, diff_probs):
-    print(f"dx = {idx[0]:2d} ({idx[0]:X}) ⟶ dy = {idx[1]:2d} ({idx[1]:X}), p = {prob}")
+    print(f"∆X = {idx[0]:2d} ({idx[0]:X}) ⟶ ∆Y = {idx[1]:2d} ({idx[1]:X}), p = {prob}")
