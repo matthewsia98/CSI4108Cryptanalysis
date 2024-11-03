@@ -3,9 +3,9 @@ import random
 import numpy as np
 
 
-random.seed(0)
+random.seed(2)
 sbox = np.array(random.sample(range(16), 16))
-permutation = np.array(random.sample(range(16), 16))
+permutation = np.array([0, 4, 8, 12, 1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15])
 
 
 def encrypt(p: int, round_keys: list[int]) -> int:
