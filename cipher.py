@@ -4,8 +4,8 @@ import numpy as np
 
 
 random.seed(0)
-sbox = np.array(random.sample(range(15), 15))
-permutation = np.array(random.sample(range(15), 15))
+sbox = np.array(random.sample(range(16), 16))
+permutation = np.array(random.sample(range(16), 16))
 
 
 def encrypt(p: int, round_keys: list[int]) -> int:
