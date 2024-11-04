@@ -18,7 +18,7 @@ match name:
     case "matt":
         gen = range(0, num_ciphertext_pairs, 1)
     case "lilia":
-        gen = range(2**16 - num_ciphertext_pairs, 2**16 - 2 * num_ciphertext_pairs, -1)
+        gen = range(2**16 - 1, 2**16 - num_ciphertext_pairs - 1, -1)
     case _:
         raise ValueError("unrecognized name")
 
