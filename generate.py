@@ -4,15 +4,26 @@ import json
 import random
 
 
-name = input("Enter your name: ").strip()
+name = input("Enter your name: ").strip().lower()
 random.seed(name)
 
 
 round_keys = [random.getrandbits(16) for _ in range(5)]
 # NOTE: must change if changing sbox or permutation
 dp = utils.btoi("0000 0000 1101 0000")
+
+
+num_ciphertext_pairs = 5000
+match name:
+    case "matt":
+        gen = range(0, num_ciphertext_pairs, 1)
+    case "lilia":
+        gen = range(2**16 - num_ciphertext_pairs, 2**16 - 2 * num_ciphertext_pairs, -1)
+    case _:
+        raise ValueError("unrecognized name")
+
 ciphertext_pairs = []
-for x1 in range(5000):
+for x1 in gen:
     x2 = x1 ^ dp
 
     c1 = cipher.encrypt(x1, round_keys)
