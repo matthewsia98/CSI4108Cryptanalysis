@@ -1,4 +1,4 @@
-Script started on 2024-11-03 19:09:15-05:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="160" LINES="40"]
+Script started on 2024-11-03 19:24:07-05:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="160" LINES="40"]
 Enter victim's name: matt
 ================
 ∆U Probabilities
@@ -278,4 +278,4 @@ Actual Key
 k = 0000 0000 0101 1111
 
 
-Script done on 2024-11-03 19:09:18-05:00 [COMMAND_EXIT_CODE="0"]
+Script done on 2024-11-03 19:24:09-05:00 [COMMAND_EXIT_CODE="0"]
