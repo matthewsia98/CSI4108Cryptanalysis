@@ -4,7 +4,7 @@ import numpy as np
 
 
 victim = input("Enter victim's name: ").strip()
-with open(f"{victim}.json", "r") as f:
+with open(f"{victim}-ciphertexts.json", "r") as f:
     data = json.load(f)
 
 sbox = np.array(data.get("sbox"))

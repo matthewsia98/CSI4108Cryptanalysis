@@ -30,7 +30,7 @@ for x1 in gen:
     c2 = cipher.encrypt(x2, round_keys)
     ciphertext_pairs.append((c1, c2))
 
-filename = f"{name}.json"
+filename = f"{name}-ciphertexts.json"
 with open(filename, "w") as f:
     json.dump(
         {
