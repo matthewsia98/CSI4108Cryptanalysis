@@ -79,6 +79,8 @@ for idx in max_idxs:
     )
 
 
+with open(f"{victim}-keys.json", "r") as f:
+    data = json.load(f)
 print("==========")
 print("Actual Key")
 print("==========")

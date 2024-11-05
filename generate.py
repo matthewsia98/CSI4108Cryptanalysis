@@ -36,13 +36,22 @@ with open(filename, "w") as f:
         {
             "sbox": cipher.sbox.tolist(),
             "permutation": cipher.permutation.tolist(),
-            "round_keys": round_keys,
             "ciphertext_pairs": ciphertext_pairs,
         },
         f,
         indent=4,
     )
 print(f"Results written to {filename}")
+
+filename = f"{name}-keys.json"
+with open(filename, "w") as f:
+    json.dump(
+        {
+            "round_keys": round_keys,
+        },
+        f,
+    )
+print(f"Round keys written to {filename}")
 
 
 print()
